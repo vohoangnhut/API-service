@@ -211,7 +211,7 @@ const btnOkImage = () => {
 
     $.ajax({
         type: "POST",
-        url: '/MonAn/uploadProductImage',
+        url: '/upload',
         data: data,
         dataType: "json",
         processData: false, // Don't process the files
