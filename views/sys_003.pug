@@ -1,0 +1,16 @@
+extends particulars/layout.pug
+block stylesheetFiles
+    link(href='css/sys_003.css', rel='stylesheet')
+block pagecontent
+    .row
+        .col-xs-12
+            .panel.panel-default
+                .panel-body
+                    h2 File Uploader
+                    .progress
+                        .progress-bar(role='progressbar')
+                    button.btn.btn-lg.upload-btn(type='button') Upload File
+    input#upload-input(type='file', name='uploads[]', multiple='multiple')
+
+block ScriptFiles
+    script(src='js/sys_003.js')

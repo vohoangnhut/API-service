@@ -1,0 +1,31 @@
+{
+  "name": "server-api",
+  "version": "1.0.0",
+  "description": "using to fetch data",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vohoangnhut/API-service.git"
+  },
+  "keywords": [
+    "nhutvo"
+  ],
+  "author": "nhutvo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vohoangnhut/API-service/issues"
+  },
+  "homepage": "https://github.com/vohoangnhut/API-service#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.14.1",
+    "mysql": "^2.13.0",
+    "nodemon": "*",
+    "pug": "^2.0.0-beta11",
+    "sequelize": "^3.30.2"
+  }
+}

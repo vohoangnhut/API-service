@@ -1,0 +1,15 @@
+.tbl-content-col {
+	    padding-top: 15px !important;
+}
+
+table{counter-reset:section;}
+.count:before
+{
+	counter-increment:section;
+	content:counter(section);
+}
+
+body {
+	background-color: #e5e5e5 !important;
+}
+

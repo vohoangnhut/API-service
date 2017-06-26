@@ -1,0 +1,26 @@
+extends particulars/layout.pug
+block stylesheetFiles
+    link(href='css/summernote.css', rel='stylesheet')
+    link(href='css/sys_002.css', rel='stylesheet')
+block pagecontent
+    .wrap-box
+        .row
+            .col-xs-12.col-sm-12.col-md-8.col-lg-8
+                #summernote
+            .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                .panel.panel-primary
+                    .panel-heading List Note
+                    .panel-body
+                        .list-group
+                            a.list-group-item(href='#')
+                                span.badge.badge-important 02/06/2017 03:17:30
+                                span.badge.badge-info
+                                    i.fa.fa-lock
+                                span.badge.badge-info
+                                    i.fa.fa-unlock
+                                h4.list-group-item-heading List group in your HTML to appear blue
+                                p.list-group-item-text in your HTML to appear blue, change the CSS to the following:     
+
+block ScriptFiles
+    script(src='js/summernote.js')
+    script(src='js/sys_002.js')

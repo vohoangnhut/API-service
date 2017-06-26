@@ -1,0 +1,18 @@
+extends particulars/layout.pug
+block stylesheetFiles
+    link(href='css/cropperjs/image_croper.css', rel='stylesheet')
+    link(href='css/cropper.css', rel='stylesheet')
+block pagecontent
+    .row
+        input#imgInp.file(type='file', accept='image/*')
+    .row
+        .col-md-6
+            img#reviewImage(src='#', alt='your image', style='width:500px')
+    .row
+        .col-md-6
+            img#reviewImage11(src='', alt='your image', style='width:500px')
+           
+block ScriptFiles
+    script(src='js/cropperjs/cropper.js')
+    script(src='js/image_croper.js')
+

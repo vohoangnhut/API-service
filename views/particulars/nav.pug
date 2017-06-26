@@ -1,0 +1,27 @@
+a#menu-toggle.btn.btn-dark.btn-lg.toggle(href='#')
+  i.fa.fa-bars
+nav#sidebar-wrapper
+  ul.sidebar-nav
+    a#menu-close.btn.btn-light.btn-lg.pull-right.toggle(href='#')
+      i.fa.fa-times
+    
+    li.sidebar-brand
+      a(href='/', onclick='$("#menu-close").click();') #DKM
+    if user != null
+      li
+        a(href='#') #{user.usrNm}
+      li
+        a(href='/sys_001', onclick='$("#menu-close").click();') Users
+      li
+        a(href='/image_croper', onclick='$("#menu-close").click();') Image Cropper
+      li
+        a(href='/sys_002', onclick='$("#menu-close").click();') Notes
+      li
+        a(href='/sys_003', onclick='$("#menu-close").click();') Upload
+      li
+        a(href='/logout', onclick='$("#menu-close").click();') Logout
+    else
+      li
+        a(href='/login', onclick='$("#menu-close").click();') Login
+
+

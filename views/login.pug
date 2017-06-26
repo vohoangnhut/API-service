@@ -1,0 +1,20 @@
+extends particulars/layout.pug
+
+block stylesheetFiles
+	link(href='css/login.css', rel='stylesheet')
+block pagecontent
+	.row
+		.col-sm-6.col-md-4.col-md-offset-4
+			h1.text-center.login-title Sign in to explore
+			.account-wall
+				img.profile-img(src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120', alt='')
+				form.form-signin(role='form', action='/login', method='post')
+					if lstErrors != null
+						each item in lstErrors
+							<div class="alert alert-danger">#{item.msg}</div>
+					input.form-control(type='email', placeholder='Email', name='usrEml', required='', autofocus='')
+					input.form-control(type='password', placeholder='Password', name='usrPsw', required='')
+					button.btn.btn-lg.btn-primary.btn-block(type='submit')
+						| Sign in
+					a.btn.btn-lg.btn-primary.btn-block(href='/auth/facebook', type='button')
+						span.fa.fa-facebook
