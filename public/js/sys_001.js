@@ -1,3 +1,6 @@
+ $(document).ready(function() {
+	$('.footable').footable();
+});
 
 /***
  * 1 : CREATE
@@ -23,30 +26,12 @@ const onClickBtnSave = () => {
 			data: {txtUsrNm:txtUsrNm,txtPsw:txtPsw,txtEmail:txtEmail,txtDes:txtDes,imgPath:imgPath},
 			success: function (result) {
 
-				swal({
-					title : result.msg,
-					type : 'success'
-				})
-
-				$('#btnSave').html('<strong>Save</strong>')
-				mode = 1;
-
-				var idElement = 'local'+result.localElement
-
-				//set value into grid
-				document.getElementById(idElement).childNodes[1].innerHTML = document.getElementsByName('txtUsrNm')[0].value
-				document.getElementById(idElement).childNodes[2].innerHTML = document.getElementsByName('txtEmail')[0].value
-				document.getElementById(idElement).childNodes[3].innerHTML = document.getElementsByName('txtDes')[0].value
-				document.getElementById(idElement).childNodes[4].innerHTML = $('#imgPath').attr('src')
-				document.getElementById(idElement).childNodes[5].setAttribute("att-email", document.getElementsByName('txtEmail')[0].value);
-				document.getElementById(idElement).childNodes[5].setAttribute("att-name", document.getElementsByName('txtUsrNm')[0].value);
-				document.getElementById(idElement).childNodes[5].setAttribute("att-des", document.getElementsByName('txtDes')[0].value);
-				document.getElementById(idElement).childNodes[5].setAttribute("att-img", $('#imgPath').attr('src'));
-
-				resetField();
-				document.getElementsByName('txtEmail')[0].disabled = false;
-				document.getElementById('btnCancel').style.visibility = 'hidden'
-				toggleAction(false);
+				swal({ 
+					title: result.msg,
+					type: "success" 
+				}).then(function(){
+					location.reload();
+				});
 				
 			}
 		});	
@@ -65,14 +50,13 @@ const onClickBtnSave = () => {
 			dataType: 'json',
 			data: {txtUsrNm:txtUsrNm,txtPsw:txtPsw,txtEmail:txtEmail,txtDes:txtDes,imgPath:imgPath},
 			success: function (result) {
-				swal({
-					title : result.msg,
-					type : 'success'
-				})
-				
-				$('#table-user').children().append(result.newRow)
 
-				resetField();
+				swal({ 
+					title: result.msg,
+					type: "success" 
+				}).then(function(){
+					location.reload();
+				});
 			},
 			error: function(result){
 				console.log(result);
@@ -86,7 +70,7 @@ const resetField = () => {
 		document.getElementsByName('txtPsw')[0].value = "";
 		document.getElementsByName('txtEmail')[0].value = "@gmail.com";
 		document.getElementsByName('txtDes')[0].value = '';
-		$('#imgPath').attr('src','/img/fav.ico');
+		$('#imgPath').attr('src','/img/avatar.png');
 }
 
 const toggleAction=(switchBT)=>{
@@ -143,13 +127,12 @@ const btnDelete = (e) => {
 				dataType: 'json',
 				data: {usrEml:usrEml},
 				success: function (result) {
-					var idElement = 'local'+result.localElement
-					document.getElementById(idElement).remove()
-					resetField();
-
-					swal({
-						title: 'Successfull',
-						type: 'success'})
+					swal({ 
+					title: 'DONE',
+					type: "success" 
+					}).then(function(){
+						location.reload();
+					});
 				},
 				error: function(result){
 					console.log(result);

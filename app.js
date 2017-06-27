@@ -9,8 +9,8 @@ app.use(express.static(path.join(__dirname,'public'),{maxAge: 0}))//315360000 })
 app.set('views',path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
-app.use(bodyParser.json()) // parse application/json
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true})) // parse application/x-www-form-urlencoded
+app.use(bodyParser.json({limit: '50mb'})) // parse application/json
 app.use(cookieParser());
 
 //Set router

@@ -41,24 +41,10 @@ const post_sys_001 = (req,res) => {
     const imgPath = req.body.imgPath;
     service_001.insertUser(txtUsrNm,txtPsw, txtEmail.toLowerCase(),imgPath,txtDes)
             .then((user)=>{
-                const newRow1 = `<tr id="local${user.dataValues.usrEml}">
-                                    <td class="tbl-content-col count"> </td>
-                                    <td class="tbl-content-col">${user.dataValues.usrNm}</td>
-                                    <td class="tbl-content-col">${user.dataValues.usrEml}</td>
-                                    <td class="tbl-content-col">${user.dataValues.usrDes}</td>
-                                    <td class="tbl-content-col">${user.dataValues.usrImg}</td>
-                                    <td att-name="${user.dataValues.usrNm}" 
-                                        att-email="${user.dataValues.usrEml}"
-                                        att-des="${user.dataValues.usrDes}"
-                                        att-img="${user.dataValues.usrImg}" >
-                                        <button class="btn btn-primary" type="button" onclick="btnEdit(this)"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-danger" type="button" onclick="btnDelete(this)" style="margin-left: 3px;"><i class="fa fa-times"></i></button>
-                                    </td>
-                                </tr>`
+
                 const responseObj = {
                     msg : 'Inserted Successfully',
-                    status  : '200',
-                    newRow : newRow1
+                    status  : '200'
                 }
                 res.end(JSON.stringify(responseObj))
             })
@@ -83,14 +69,10 @@ const put_sys_001 = (req,res) => {
                     
                     service_001.updateUserByEmail(usrNm,usrEml,usrPsw,imgPath,txtDes)
                         .then((abc)=>{
-                            console.log(`update --- ${abc}`)
-                            
                             const responseObj = {
                                 msg : 'Updated Successfully',
-                                status  : '200',
-                                localElement : usrEml
+                                status  : '200'
                             }
-
                             res.end(JSON.stringify(responseObj));
                     })
                 }
@@ -104,11 +86,9 @@ const delete_sys_001 = (req,res) => {
     const usrEml = req.body.usrEml;    
     service_001.deleteUserByEmail(usrEml)
         .then((abc)=>{
-            console.log(`deleted --- ${abc}`)
             const responseObj = {
                 msg : 'Deleted Successfully',
-                status  : '200',
-                localElement : usrEml
+                status  : '200'
             }
             res.end(JSON.stringify(responseObj));
         })

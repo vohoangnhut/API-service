@@ -1,6 +1,7 @@
 extends particulars/layout.pug
 block stylesheetFiles
     link(href='libs/cropper/cropper.min.css', rel='stylesheet')
+    link(href="libs/footable/footable.core.css" rel="stylesheet")
     link(href='css/sys_001.css', rel='stylesheet')
 block pagecontent
     .row
@@ -31,7 +32,7 @@ block pagecontent
               .form-group
                 label.col-sm-3.control-label Hình
                 .col-md-9
-                  img#imgPath.img-thumbnail(alt='image', src='/img/fav.ico', style='max-width: 140px;height: 140px;')
+                  img#imgPath.img-thumbnail(alt='image', src='/img/avatar.png', style='max-width: 140px;height: 140px;')
                   a.btn.btn-xs.btn-dark(data-toggle='modal', data-target='#editProductImage', style='margin-left:10px')  Edit 
               .form-group
                 label.col-sm-3
@@ -46,27 +47,34 @@ block pagecontent
         .panel.panel-primary
           .panel-heading Users List
           .panel-body         
-            table.table.table-hover#table-user
-              tr
-                th(style='width: 10px') #
-                th Name
-                th Email
-                th Des
-                th Img
-                th(style='width: 100px') Action
+            input#filter.form-control.input-sm.m-b-xs(type='text', placeholder='Search in table')
+            table.footable.table.table-hover#table-user(data-page-size="8" ,data-filter='#filter')
+              thead
+                tr
+                  th(style='width: 10px',data-sort-ignore='true') #
+                  th(data-sort-ignore='true') Name
+                  th(data-sort-ignore='true') Email
+                  th(data-sort-ignore='true') Des
+                  th(data-sort-ignore='true') Img
+                  th(style='width: 100px',data-sort-ignore='true') Action
               if users != null
                 each user in users
-                    tr(id= 'local' + user.usrEml)
-                      td.tbl-content-col.count 
-                      td.tbl-content-col #{user.usrNm}
-                      td.tbl-content-col #{user.usrEml}
-                      td.tbl-content-col #{user.usrDes}
-                      td.tbl-content-col #{user.usrImg}
-                      td(att-name= user.usrNm, att-email= user.usrEml, att-des=user.usrDes, att-img=user.usrImg)
-                          button.btn.btn-primary(type='button', onclick='btnEdit(this)')
-                            i.fa.fa-pencil
-                          button.btn.btn-danger(type='button', onclick='btnDelete(this)',style='margin-left: 3px;')
-                            i.fa.fa-times
+                    tbody
+                      tr(id= 'local' + user.usrEml)
+                        td.tbl-content-col.count 
+                        td.tbl-content-col #{user.usrNm}
+                        td.tbl-content-col #{user.usrEml}
+                        td.tbl-content-col #{user.usrDes}
+                        td.tbl-content-col #{user.usrImg}
+                        td(att-name= user.usrNm, att-email= user.usrEml, att-des=user.usrDes, att-img=user.usrImg)
+                            button.btn.btn-primary(type='button', onclick='btnEdit(this)')
+                              i.fa.fa-pencil
+                            button.btn.btn-danger(type='button', onclick='btnDelete(this)',style='margin-left: 3px;')
+                              i.fa.fa-times
+              tfoot
+                tr
+                  td(colspan='5')
+                    ul.pagination.pull-right
 
     #editProductImage.modal.fade
       .modal-dialog.modal-lg
@@ -85,7 +93,7 @@ block pagecontent
                         .img-preview.img-preview-sm
                         h4 Comon method
                         .btn-group
-                          label.btn.btn-primary(title='Upload image file', for='inputImage')
+                          label.btn.btn-success(title='Upload image file', for='inputImage')
                             input#inputImage.hide(type='file', accept='image/x-png,image/jpeg', name='file')
                             |                                                 Upload new image
                         .btn-group
@@ -94,10 +102,12 @@ block pagecontent
                           button#rotateLeft.btn.btn-white(type='button') Rotate Left
                           button#rotateRight.btn.btn-white(type='button') Rotate Right
           .modal-footer
-            button.btn.btn-primary(type='button', onclick='btnOkImage()') Ok
+            button.btn.btn-success(type='button', onclick='btnOkImage()') Ok
             button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
 
             
 block ScriptFiles
     script(src='libs/cropper/cropper.min.js')
+    script(src='libs/footable/footable.all.min.js')
+    
     script(src='js/sys_001.js')
