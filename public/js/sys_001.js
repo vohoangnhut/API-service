@@ -1,5 +1,16 @@
  $(document).ready(function() {
 	$('.footable').footable();
+
+
+});
+
+$(document).ajaxStart(function () {
+$("body").css("cursor", "progress");
+	$.blockUI({ message: $('#_spinkit-processBar') });
+	//$.blockUI();
+}).ajaxComplete(function () {
+	$("body").css("cursor", "default");
+	$.unblockUI();
 });
 
 /***

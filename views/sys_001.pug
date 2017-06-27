@@ -104,10 +104,17 @@ block pagecontent
           .modal-footer
             button.btn.btn-success(type='button', onclick='btnOkImage()') Ok
             button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-
-            
+    // ProcessBar
+    #_spinkit-processBar.spinner(style='display:none;')
+      .rect1
+      .rect2
+      .rect3
+      .rect4
+      .rect5
+     
 block ScriptFiles
     script(src='libs/cropper/cropper.min.js')
     script(src='libs/footable/footable.all.min.js')
+    script(src='libs/blockUI/jquery.blockUI.js')
     
     script(src='js/sys_001.js')
