@@ -15,9 +15,7 @@ function upload(req,res){
             console.log("succeeded in saving")
 
             //Local
-            //res.send('/uploads/images/' + namefile );
-            //Live
-            res.send(path.join(__dirname,'../public/uploads/images/') + namefile);
+            res.send('/uploads/images/' + namefile );
         }
     });
 }

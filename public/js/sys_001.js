@@ -220,7 +220,7 @@ const btnOkImage = () => {
         data: postData,
 		
         success: function (result) {
-            $('#imgPath').attr('src', result);
+            $('#imgPath').attr('src', window.location.origin + result);
         },
         error: function () {
             console.log("Error occurs on the Database level!");
