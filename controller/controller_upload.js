@@ -17,7 +17,7 @@ function upload(req,res){
             //Local
             //res.send('/uploads/images/' + namefile );
             //Live
-            res.send(path.join(__dirname,'../public/uploads/images/' + namefile);
+            res.send(path.join(__dirname,'../public/uploads/images/') + namefile);
         }
     });
 }
