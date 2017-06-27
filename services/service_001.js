@@ -42,11 +42,20 @@ const updateUserByEmail = (usrNm,usrEml,usrPsw,usrImg,usrDes) => {
     );
 }
 
+const getUserPagin = (page) => {
+    return user.findAndCountAll({
+        limit: 5,
+        offset: parseInt(page),
+        order: [['createdAt']]
+    })
+}
+
 
 module.exports = {
     insertUser,
     selectAllUser,
     deleteUserByEmail,
     updateUserByEmail,
-    findUserByMail
+    findUserByMail,
+    getUserPagin
 }

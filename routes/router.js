@@ -1,6 +1,7 @@
 
 const sys_001 = require('../controller/controller_sys001')
 const upload = require('../controller/controller_upload')
+const api = require('../controller/controller_api')
 
 module.exports = (app , passport) => {
         
@@ -13,7 +14,8 @@ module.exports = (app , passport) => {
     //             .get( angularAPIcontroller.getById)     
     //             .delete( angularAPIcontroller.deleteById)
     //             .put(angularAPIcontroller.update)
-
+    app.route('/api/:page').get(api.getData)
+    app.route('/api').get(api.getData)
     /**
      * GET : Read
      * POST : Create
