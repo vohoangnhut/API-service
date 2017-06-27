@@ -13,7 +13,11 @@ function upload(req,res){
             console.log("failed to save")
         } else {
             console.log("succeeded in saving")
-            res.send('/uploads/images/' + namefile );
+
+            //Local
+            //res.send('/uploads/images/' + namefile );
+            //Live
+            res.send(path.join(__dirname,'../public/uploads/images/' + namefile);
         }
     });
 }
