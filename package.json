@@ -24,6 +24,7 @@
     "cookie-parser": "^1.4.1",
     "express": "^4.14.1",
     "formidable": "^1.1.1",
+    "fs": "0.0.1-security",
     "mysql": "^2.13.0",
     "nodemon": "*",
     "pug": "^2.0.0-beta11",

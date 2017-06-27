@@ -1,33 +1,21 @@
+const path =  require('path')
 var formidable = require('formidable');
+var fs      = require('fs')
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function upload(req,res){
-    var form = new formidable.IncomingForm();
+    var namefile = '_' + Math.random().toString(36).substr(2, 9) + '.png';
 
-    // specify that we want to allow the user to upload multiple files in a single request
-    form.multiples = true;
-
-    form.uploadDir = path.join(__dirname, '/uploads');
-    
-    // every time a file has been uploaded successfully,
-    // rename it to it's orignal name
-    form.on('file', function(field, file) {
-        fs.rename(file.path, path.join(form.uploadDir, file.name));
+    fs.writeFile( path.join(__dirname,'../public/uploads/images/') + namefile , req.body.file , 'base64', function(err) {
+        if (err) {
+            //response.send("failed to save");
+            console.log("failed to save")
+        } else {
+            console.log("succeeded in saving")
+            res.send('/uploads/images/' + namefile );
+        }
     });
-
-      // log any errors that occur
-    form.on('error', function(err) {
-        console.log('An error has occured: \n' + err);
-    });
-
-    // once all the files have been uploaded, send a response to the client
-    form.on('end', function() {
-        res.end('success');
-    });
-
-    // parse the incoming request containing the form data
-    form.parse(req);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

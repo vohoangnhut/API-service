@@ -37,14 +37,20 @@ const post_sys_001 = (req,res) => {
     const txtUsrNm = req.body.txtUsrNm;
     const txtEmail = req.body.txtEmail;
     const txtPsw = req.body.txtPsw;
-    service_001.insertUser(txtUsrNm,txtPsw, txtEmail.toLowerCase(),'none','desc')
+    const txtDes = req.body.txtDes;
+    const imgPath = req.body.imgPath;
+    service_001.insertUser(txtUsrNm,txtPsw, txtEmail.toLowerCase(),imgPath,txtDes)
             .then((user)=>{
                 const newRow1 = `<tr id="local${user.dataValues.usrEml}">
                                     <td class="tbl-content-col count"> </td>
                                     <td class="tbl-content-col">${user.dataValues.usrNm}</td>
                                     <td class="tbl-content-col">${user.dataValues.usrEml}</td>
+                                    <td class="tbl-content-col">${user.dataValues.usrDes}</td>
+                                    <td class="tbl-content-col">${user.dataValues.usrImg}</td>
                                     <td att-name="${user.dataValues.usrNm}" 
-                                        att-email="${user.dataValues.usrEml}" >
+                                        att-email="${user.dataValues.usrEml}"
+                                        att-des="${user.dataValues.usrDes}"
+                                        att-img="${user.dataValues.usrImg}" >
                                         <button class="btn btn-primary" type="button" onclick="btnEdit(this)"><i class="fa fa-pencil"></i></button>
                                         <button class="btn btn-danger" type="button" onclick="btnDelete(this)" style="margin-left: 3px;"><i class="fa fa-times"></i></button>
                                     </td>
@@ -66,7 +72,8 @@ const put_sys_001 = (req,res) => {
     const usrNm = req.body.txtUsrNm;   
     const usrEml = req.body.txtEmail;    
     const usrPsw = req.body.txtPsw;    
-
+    const txtDes = req.body.txtDes;
+    const imgPath = req.body.imgPath;
     service_001.findUserByMail(usrEml.toLowerCase())
         .then((user)=>{
             if(!user)
@@ -74,7 +81,7 @@ const put_sys_001 = (req,res) => {
             else
                 {
                     
-                    service_001.updateUserByEmail(usrNm,usrEml,usrPsw)
+                    service_001.updateUserByEmail(usrNm,usrEml,usrPsw,imgPath,txtDes)
                         .then((abc)=>{
                             console.log(`update --- ${abc}`)
                             

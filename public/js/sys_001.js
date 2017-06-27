@@ -13,12 +13,14 @@ const onClickBtnSave = () => {
 		var txtUsrNm = document.getElementsByName('txtUsrNm')[0].value
 		var txtPsw = document.getElementsByName('txtPsw')[0].value	
 		var txtEmail = document.getElementsByName('txtEmail')[0].value
+		var txtDes = document.getElementsByName('txtDes')[0].value
+		var imgPath = $('#imgPath').attr('src');
 
 		$.ajax({
 			type: "PUT",
 			url: '/sys_001',
 			dataType: 'json',
-			data: {txtUsrNm:txtUsrNm,txtPsw:txtPsw,txtEmail:txtEmail},
+			data: {txtUsrNm:txtUsrNm,txtPsw:txtPsw,txtEmail:txtEmail,txtDes:txtDes,imgPath:imgPath},
 			success: function (result) {
 
 				swal({
@@ -34,8 +36,12 @@ const onClickBtnSave = () => {
 				//set value into grid
 				document.getElementById(idElement).childNodes[1].innerHTML = document.getElementsByName('txtUsrNm')[0].value
 				document.getElementById(idElement).childNodes[2].innerHTML = document.getElementsByName('txtEmail')[0].value
-				document.getElementById(idElement).childNodes[3].setAttribute("att-email", document.getElementsByName('txtEmail')[0].value);
-				document.getElementById(idElement).childNodes[3].setAttribute("att-name", document.getElementsByName('txtUsrNm')[0].value);
+				document.getElementById(idElement).childNodes[3].innerHTML = document.getElementsByName('txtDes')[0].value
+				document.getElementById(idElement).childNodes[4].innerHTML = $('#imgPath').attr('src')
+				document.getElementById(idElement).childNodes[5].setAttribute("att-email", document.getElementsByName('txtEmail')[0].value);
+				document.getElementById(idElement).childNodes[5].setAttribute("att-name", document.getElementsByName('txtUsrNm')[0].value);
+				document.getElementById(idElement).childNodes[5].setAttribute("att-des", document.getElementsByName('txtDes')[0].value);
+				document.getElementById(idElement).childNodes[5].setAttribute("att-img", $('#imgPath').attr('src'));
 
 				resetField();
 				document.getElementsByName('txtEmail')[0].disabled = false;
@@ -50,12 +56,14 @@ const onClickBtnSave = () => {
 		var txtUsrNm = document.getElementsByName('txtUsrNm')[0].value
 		var txtPsw = document.getElementsByName('txtPsw')[0].value	
 		var txtEmail = document.getElementsByName('txtEmail')[0].value
+		var txtDes = document.getElementsByName('txtDes')[0].value
+		var imgPath = $('#imgPath').attr('src');
 
 		$.ajax({
 			type: "POST",
 			url: '/sys_001',
 			dataType: 'json',
-			data: {txtUsrNm:txtUsrNm,txtPsw:txtPsw,txtEmail:txtEmail},
+			data: {txtUsrNm:txtUsrNm,txtPsw:txtPsw,txtEmail:txtEmail,txtDes:txtDes,imgPath:imgPath},
 			success: function (result) {
 				swal({
 					title : result.msg,
@@ -77,6 +85,8 @@ const resetField = () => {
 		document.getElementsByName('txtUsrNm')[0].value = "";
 		document.getElementsByName('txtPsw')[0].value = "";
 		document.getElementsByName('txtEmail')[0].value = "@gmail.com";
+		document.getElementsByName('txtDes')[0].value = '';
+		$('#imgPath').attr('src','/img/fav.ico');
 }
 
 const toggleAction=(switchBT)=>{
@@ -95,8 +105,12 @@ const btnEdit = (e) => {
 
 		const email = e.parentNode.getAttribute('att-email')
 		const name = e.parentNode.getAttribute('att-name')
+		const des = e.parentNode.getAttribute('att-des')
+		const img = e.parentNode.getAttribute('att-img')
 		document.getElementsByName('txtUsrNm')[0].value = name;
 		document.getElementsByName('txtEmail')[0].value = email;
+		document.getElementsByName('txtDes')[0].value = des;
+		$('#imgPath').attr('src',img);
 
 		toggleAction(true);
 
@@ -203,20 +217,25 @@ $("#rotateRight").click(function () {
 
 const btnOkImage = () => {
     $("#editProductImage").modal('toggle');
+	
+	var base64 = $image.cropper("getDataURL");
 
-    var base64 = $image.cropper("getDataURL");
+    //var data = new FormData();
+    //data.append('file', base64.split(',')[1]);
 
-    var data = new FormData();
-    data.append('file', base64.split(',')[1]);
+	var postData = JSON.stringify({ 'file': base64.split(',')[1] });
 
     $.ajax({
         type: "POST",
         url: '/upload',
-        data: data,
-        dataType: "json",
-        processData: false, // Don't process the files
+        //data: data,
+        //dataType: "json",
+        //processData: false, // Don't process the files
         contentType: false,//"application/json; charset=utf-8",
 
+		contentType: 'application/json; charset=utf-8',
+        data: postData,
+		
         success: function (result) {
             $('#imgPath').attr('src', result);
         },

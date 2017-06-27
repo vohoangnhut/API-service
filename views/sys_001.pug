@@ -1,6 +1,6 @@
 extends particulars/layout.pug
 block stylesheetFiles
-    link(href='css/cropperjs/cropper.min.css', rel='stylesheet')
+    link(href='libs/cropper/cropper.min.css', rel='stylesheet')
     link(href='css/sys_001.css', rel='stylesheet')
 block pagecontent
     .row
@@ -25,10 +25,14 @@ block pagecontent
                 .col-sm-9
                   input.form-control(type='password', name='txtPsw',autocomplete='off')
               .form-group
+                label.col-sm-3.control-label Des
+                .col-sm-9
+                  textarea.form-control(name='txtDes',rows='3',autocomplete='off',style='overflow:auto;resize:none')
+              .form-group
                 label.col-sm-3.control-label Hình
                 .col-md-9
                   img#imgPath.img-thumbnail(alt='image', src='/img/fav.ico', style='max-width: 140px;height: 140px;')
-                  a.btn.btn-xs.btn-dark(data-toggle='modal', data-target='#editProductImage')  Edit 
+                  a.btn.btn-xs.btn-dark(data-toggle='modal', data-target='#editProductImage', style='margin-left:10px')  Edit 
               .form-group
                 label.col-sm-3
                 .col-sm-9
@@ -47,6 +51,8 @@ block pagecontent
                 th(style='width: 10px') #
                 th Name
                 th Email
+                th Des
+                th Img
                 th(style='width: 100px') Action
               if users != null
                 each user in users
@@ -54,7 +60,9 @@ block pagecontent
                       td.tbl-content-col.count 
                       td.tbl-content-col #{user.usrNm}
                       td.tbl-content-col #{user.usrEml}
-                      td(att-name= user.usrNm, att-email= user.usrEml, att-pass= user.usrPsw)
+                      td.tbl-content-col #{user.usrDes}
+                      td.tbl-content-col #{user.usrImg}
+                      td(att-name= user.usrNm, att-email= user.usrEml, att-des=user.usrDes, att-img=user.usrImg)
                           button.btn.btn-primary(type='button', onclick='btnEdit(this)')
                             i.fa.fa-pencil
                           button.btn.btn-danger(type='button', onclick='btnDelete(this)',style='margin-left: 3px;')
@@ -91,5 +99,5 @@ block pagecontent
 
             
 block ScriptFiles
-    script(src='js/cropperjs/cropper.min.js')
+    script(src='libs/cropper/cropper.min.js')
     script(src='js/sys_001.js')

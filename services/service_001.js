@@ -30,10 +30,12 @@ const deleteUserByEmail = (usrEml) => {
             });
 }
 
-const updateUserByEmail = (usrNm,usrEml,usrPsw) => {
+const updateUserByEmail = (usrNm,usrEml,usrPsw,usrImg,usrDes) => {
     return user.update({
                     usrPsw: usrPsw,
                     usrNm: usrNm,
+                    usrImg: usrImg,
+                    usrDes: usrDes,
                 }, {
                     where: {usrEml: usrEml}
                 }

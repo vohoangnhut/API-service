@@ -5,7 +5,7 @@ const upload = require('../controller/controller_upload')
 module.exports = (app , passport) => {
         
     app.route('/').get(sys_001.homePage)
-    app.route('/upload').get(upload.upload)
+    app.route('/upload').post(upload.upload)
     //   app.route('/api')
     //             .get( angularAPIcontroller.getAll)       
     //             .post( angularAPIcontroller.create) 
