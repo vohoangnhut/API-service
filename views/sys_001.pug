@@ -48,25 +48,26 @@ block pagecontent
           .panel-heading Users List
           .panel-body         
             input#filter.form-control.input-sm.m-b-xs(type='text', placeholder='Search in table')
-            table.footable.table.table-hover#table-user(data-page-size="8" ,data-filter='#filter')
+            table.footable.table.table-hover#table-user(data-page-size="5" ,data-filter='#filter')
               thead
                 tr
-                  th(style='width: 10px',data-sort-ignore='true') #
+                  th(data-sort-ignore='true') #
                   th(data-sort-ignore='true') Name
                   th(data-sort-ignore='true') Email
                   th(data-sort-ignore='true') Des
                   th(data-sort-ignore='true') Img
-                  th(style='width: 100px',data-sort-ignore='true') Action
+                  th(data-sort-ignore='true') Action
               if users != null
                 each user in users
                     tbody
                       tr(id= 'local' + user.usrEml)
-                        td.tbl-content-col.count 
-                        td.tbl-content-col #{user.usrNm}
-                        td.tbl-content-col #{user.usrEml}
-                        td.tbl-content-col #{user.usrDes}
-                        td.tbl-content-col #{user.usrImg}
-                        td(att-name= user.usrNm, att-email= user.usrEml, att-des=user.usrDes, att-img=user.usrImg)
+                        td.wrapword.tbl-content-col.count 
+                        td.wrapword.tbl-content-col(title=user.usrNm) #{user.usrNm}
+                        td.wrapword.tbl-content-col(title=user.usrEml) #{user.usrEml}
+                        td.wrapword.tbl-content-col(title=user.usrDes) #{user.usrDes}
+                        td.wrapword.tbl-content-col
+                          img(alt='image', src=user.usrImg, style='width: 50px;height: 50px;') 
+                        td.wrapword(att-name= user.usrNm, att-email= user.usrEml, att-des=user.usrDes, att-img=user.usrImg)
                             button.btn.btn-primary(type='button', onclick='btnEdit(this)')
                               i.fa.fa-pencil
                             button.btn.btn-danger(type='button', onclick='btnDelete(this)',style='margin-left: 3px;')

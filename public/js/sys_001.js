@@ -1,6 +1,8 @@
+ var defaultImage = window.location.origin + '/img/avatar.png';
  $(document).ready(function() {
 	$('.footable').footable();
 
+	$('#imgPath').attr('src', defaultImage)
 
 });
 
@@ -81,7 +83,7 @@ const resetField = () => {
 		document.getElementsByName('txtPsw')[0].value = "";
 		document.getElementsByName('txtEmail')[0].value = "@gmail.com";
 		document.getElementsByName('txtDes')[0].value = '';
-		$('#imgPath').attr('src','/img/avatar.png');
+		$('#imgPath').attr('src',defaultImage);
 }
 
 const toggleAction=(switchBT)=>{
