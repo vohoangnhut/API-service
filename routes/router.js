@@ -15,6 +15,8 @@ module.exports = (app , passport) => {
     //             .delete( angularAPIcontroller.deleteById)
     //             .put(angularAPIcontroller.update)
     app.route('/api/:page').get(api.getData)
+    app.route('/users/:limit/:offset').get(api.getListUser)
+    app.route('/user/:id').get(api.getUserInfor)
     app.route('/api').get(api.getData)
     /**
      * GET : Read

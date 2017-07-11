@@ -50,6 +50,24 @@ const getUserPagin = (page) => {
     })
 }
 
+const getUsersList = (limit,offset) => {
+    return user.findAndCountAll({
+        limit: parseInt(limit),
+        offset: parseInt(offset),
+        order: [['createdAt']]
+    })
+}
+
+const getUserInfor = (id) => {
+    return user.findOne({
+        where : {
+            id : id
+        }
+    })
+}
+
+
+
 
 module.exports = {
     insertUser,
@@ -57,5 +75,5 @@ module.exports = {
     deleteUserByEmail,
     updateUserByEmail,
     findUserByMail,
-    getUserPagin
+    getUserPagin,getUsersList,getUserInfor
 }
