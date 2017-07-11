@@ -1,4 +1,4 @@
- var defaultImage = 'https://uploadfolder.herokuapp.com/' + 'avatar.png';
+ var defaultImage = window.location.origin + 'avatar.png';
  $(document).ready(function() {
 	$('.footable').footable();
 
