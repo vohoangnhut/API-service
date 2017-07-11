@@ -1,4 +1,4 @@
- var defaultImage = window.location.origin + '/img/avatar.png';
+ var defaultImage = 'https://uploadfolder.herokuapp.com/' + 'avatar.png';
  $(document).ready(function() {
 	$('.footable').footable();
 
@@ -223,12 +223,12 @@ const btnOkImage = () => {
 
     $.ajax({
         type: "POST",
-        url: '/upload',
+        url: 'https://uploadfolder.herokuapp.com/uploadImage',
         //data: data,
         //dataType: "json",
         //processData: false, // Don't process the files
         contentType: false,//"application/json; charset=utf-8",
-
+		withCredentials: true,
 		contentType: 'application/json; charset=utf-8',
         data: postData,
 		
