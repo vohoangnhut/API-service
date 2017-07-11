@@ -223,12 +223,10 @@ const btnOkImage = () => {
 
     $.ajax({
         type: "POST",
-        url: 'https://uploadfolder.herokuapp.com/uploadImage',
-        //data: data,
-        //dataType: "json",
-        //processData: false, // Don't process the files
-        contentType: false,//"application/json; charset=utf-8",
-		withCredentials: true,
+        //url: 'https://uploadfolder.herokuapp.com/uploadImage',
+		//dataType: 'jsonp',
+		url:'/upload',
+        contentType: false,
 		contentType: 'application/json; charset=utf-8',
         data: postData,
 		
